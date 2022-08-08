@@ -1,5 +1,5 @@
-import { createReducer } from "@reduxjs/toolkit";
-import * as actions from "store/actions/theme";
+import { createReducer } from '@reduxjs/toolkit';
+import * as actions from 'store/actions/theme';
 
 export type IThemeState = {
   dark: boolean;
@@ -13,7 +13,7 @@ export default createReducer(initialState, {
   [actions?.CHANGE_THEME]: (state = initialState, { theme }) => {
     return {
       ...state,
-      dark: theme === "dark" ? true : false,
+      dark: theme === 'dark' ? true : false,
     };
   },
 });

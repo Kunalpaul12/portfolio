@@ -1,23 +1,30 @@
-import "./App.css";
+import './App.css';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { IAppStateReducer } from 'store/reducers';
+import { ThemeActions } from 'store/actions/theme';
 
-function App() {
+type Props = {
+  isDark: boolean;
+  changeTheme: (theme: string) => void;
+};
+
+const App: React.FC<Props> = ({ isDark, changeTheme }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <button onClick={() => changeTheme(isDark ? 'light' : 'dark')}>
+        {isDark ? 'Dark' : 'Light'}
+      </button>
     </div>
   );
-}
+};
 
-export default App;
+const selector = (state: IAppStateReducer) => ({
+  isDark: state?.theme?.dark,
+});
+
+const actions = {
+  changeTheme: ThemeActions?.changeTheme,
+};
+
+export default compose(connect(selector, actions))(App);
