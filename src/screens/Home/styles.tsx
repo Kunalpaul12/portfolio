@@ -4,8 +4,6 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   background-color: ${(props: any) => props?.theme?.bgColor};
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Button = styled.button`
