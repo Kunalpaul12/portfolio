@@ -1,19 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit';
 import * as actions from 'store/actions/theme';
+import { lightColors, darkColors } from 'colors';
 
 export type IThemeState = {
-  dark: boolean;
+  colors: any;
 };
 
 const initialState: IThemeState = {
-  dark: false,
+  colors: lightColors,
 };
 
 export default createReducer(initialState, {
   [actions?.CHANGE_THEME]: (state = initialState, { theme }) => {
     return {
       ...state,
-      dark: theme === 'dark' ? true : false,
+      colors: theme === 'dark' ? darkColors : lightColors,
     };
   },
 });

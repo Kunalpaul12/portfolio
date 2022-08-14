@@ -1,30 +1,25 @@
-import './App.css';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { IAppStateReducer } from 'store/reducers';
-import { ThemeActions } from 'store/actions/theme';
+import { ThemeProvider } from 'styled-components';
+import Home from 'screens/Home';
 
 type Props = {
-  isDark: boolean;
-  changeTheme: (theme: string) => void;
+  colors: any;
 };
 
-const App: React.FC<Props> = ({ isDark, changeTheme }) => {
+const App: React.FC<Props> = ({ colors }) => {
   return (
-    <div className='App'>
-      <button onClick={() => changeTheme(isDark ? 'light' : 'dark')}>
-        {isDark ? 'Dark' : 'Light'}
-      </button>
-    </div>
+    <ThemeProvider theme={colors}>
+      <Home />
+    </ThemeProvider>
   );
 };
 
 const selector = (state: IAppStateReducer) => ({
-  isDark: state?.theme?.dark,
+  colors: state?.theme?.colors,
 });
 
-const actions = {
-  changeTheme: ThemeActions?.changeTheme,
-};
+const actions = {};
 
 export default compose(connect(selector, actions))(App);

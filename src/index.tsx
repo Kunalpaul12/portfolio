@@ -5,10 +5,6 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from 'store/reducers';
-// import { applyMiddleware, compose } from 'redux';
-// import thunkMiddleware from 'redux-thunk';
-// import loggerMiddleware from './middleware/logger';
-// import monitorReducerEnhancer from './enhancers/monitorReducer';
 import logger from 'redux-logger';
 
 const store = configureStore({
