@@ -30,7 +30,7 @@ interface Props {
 const drawerWidth = 240;
 
 export default function DrawerAppBar(props: Props) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navItems = [t('about_me'), t('works'), t('clients'), t('contact')];
   const { window, theme, changeTheme } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -41,7 +41,7 @@ export default function DrawerAppBar(props: Props) {
 
   const SwitchMode = () => {
     return (
-      <FormGroup>
+      <FormGroup sx={{ position: 'absolute', right: '1%' }}>
         <FormControlLabel
           control={
             <Switch
@@ -56,10 +56,24 @@ export default function DrawerAppBar(props: Props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{
+        textAlign: 'center',
+        backgroundColor: theme?.bgColor,
+        height: '100vh',
+      }}
+    >
       <Typography
         variant='h6'
-        sx={{ my: 2, fontStyle: { fontFamily: 'Montserrat', fontWeight: 550 } }}
+        sx={{
+          my: 2,
+          fontStyle: {
+            fontFamily: 'Montserrat',
+            fontWeight: 550,
+            color: theme?.fontColor,
+          },
+        }}
       >
         {t('name')}
       </Typography>
@@ -68,7 +82,7 @@ export default function DrawerAppBar(props: Props) {
         {navItems.map(item => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item} sx={{ color: theme?.fontColor }} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -81,7 +95,7 @@ export default function DrawerAppBar(props: Props) {
 
   return (
     <Box sx={{ display: 'flex', backgroundColor: theme?.bgColor }}>
-      <AppBar component='nav'>
+      <AppBar component='nav' sx={{ backgroundColor: theme?.bgColor }}>
         <Toolbar>
           <IconButton
             color='inherit'
@@ -90,7 +104,7 @@ export default function DrawerAppBar(props: Props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'none' } }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ color: theme?.fontColor }} />
           </IconButton>
           <Typography
             variant='h6'
@@ -98,17 +112,18 @@ export default function DrawerAppBar(props: Props) {
             sx={{
               flexGrow: 1,
               display: { xs: 'none', sm: 'block' },
+              color: theme?.fontColor,
               fontStyle: { fontFamily: 'Montserrat', fontWeight: 550 },
             }}
           >
             {t('name')}
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '7%' }}>
             {navItems.map(item => (
               <Button
                 key={item}
                 sx={{
-                  color: '#fff',
+                  color: theme?.fontColor,
                   fontStyle: { fontFamily: 'Montserrat', fontWeight: 550 },
                 }}
               >
