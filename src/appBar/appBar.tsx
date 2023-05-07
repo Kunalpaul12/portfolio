@@ -16,6 +16,10 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { Fonts } from 'constants/Fonts';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 
 interface Props {
   /**
@@ -29,11 +33,40 @@ interface Props {
 
 const drawerWidth = 240;
 
+import { useMediaQuery, useTheme } from '@mui/material';
+
+type MinHeight = {
+  minHeight: number;
+};
+
+function useAppBarHeight(): number {
+  const {
+    mixins: { toolbar },
+    breakpoints,
+  } = useTheme();
+  const toolbarDesktopQuery = breakpoints.up('sm');
+  const toolbarLandscapeQuery = `${breakpoints.up(
+    'xs',
+  )} and (orientation: landscape)`;
+  const isDesktop = useMediaQuery(toolbarDesktopQuery);
+  const isLandscape = useMediaQuery(toolbarLandscapeQuery);
+  let currentToolbarMinHeight;
+  if (isDesktop) {
+    currentToolbarMinHeight = toolbar[toolbarDesktopQuery];
+  } else if (isLandscape) {
+    currentToolbarMinHeight = toolbar[toolbarLandscapeQuery];
+  } else {
+    currentToolbarMinHeight = toolbar;
+  }
+  return (currentToolbarMinHeight as MinHeight).minHeight;
+}
+
 export default function DrawerAppBar(props: Props) {
   const { t } = useTranslation();
-  const navItems = [t('about_me'), t('works'), t('clients'), t('contact')];
+  const navItems = [t('about'), t('works'), t('clients'), t('contact')];
   const { window, theme, changeTheme } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -41,7 +74,15 @@ export default function DrawerAppBar(props: Props) {
 
   const SwitchMode = () => {
     return (
-      <FormGroup sx={{ position: 'absolute', right: '1%' }}>
+      <FormGroup
+        sx={{
+          flexDirection: 'row',
+          position: 'absolute',
+          right: '1%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <FormControlLabel
           control={
             <Switch
@@ -49,8 +90,13 @@ export default function DrawerAppBar(props: Props) {
               onChange={() => changeTheme(theme?.dark ? 'light' : 'dark')}
             />
           }
-          label={theme?.dark ? 'Dark' : 'Light'}
+          label={''}
         />
+        {theme?.dark ? (
+          <DarkModeIcon />
+        ) : (
+          <WbSunnyOutlinedIcon sx={{ color: theme?.black }} />
+        )}
       </FormGroup>
     );
   };
@@ -69,7 +115,7 @@ export default function DrawerAppBar(props: Props) {
         sx={{
           my: 2,
           fontStyle: {
-            fontFamily: 'Montserrat',
+            fontFamily: Fonts.regular,
             fontWeight: 550,
             color: theme?.fontColor,
           },
@@ -81,7 +127,10 @@ export default function DrawerAppBar(props: Props) {
       <List>
         {navItems.map(item => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
+            <ListItemButton
+              sx={{ textAlign: 'center' }}
+              onClick={() => navigate(`/${item.toLowerCase()}`)}
+            >
               <ListItemText primary={item} sx={{ color: theme?.fontColor }} />
             </ListItemButton>
           </ListItem>
@@ -94,7 +143,13 @@ export default function DrawerAppBar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex', backgroundColor: theme?.bgColor }}>
+    <Box
+      sx={{
+        display: 'flex',
+        backgroundColor: theme?.bgColor,
+        height: useAppBarHeight(),
+      }}
+    >
       <AppBar component='nav' sx={{ backgroundColor: theme?.bgColor }}>
         <Toolbar>
           <IconButton
@@ -113,7 +168,7 @@ export default function DrawerAppBar(props: Props) {
               flexGrow: 1,
               display: { xs: 'none', sm: 'block' },
               color: theme?.fontColor,
-              fontStyle: { fontFamily: 'Montserrat', fontWeight: 550 },
+              fontStyle: { fontFamily: Fonts.regular, fontWeight: 550 },
             }}
           >
             {t('name')}
@@ -124,7 +179,10 @@ export default function DrawerAppBar(props: Props) {
                 key={item}
                 sx={{
                   color: theme?.fontColor,
-                  fontStyle: { fontFamily: 'Montserrat', fontWeight: 550 },
+                  fontStyle: { fontFamily: Fonts.regular, fontWeight: 550 },
+                }}
+                onClick={() => {
+                  navigate(item === 'about' ? `/` : `/${item.toLowerCase()}`);
                 }}
               >
                 {item}
@@ -153,17 +211,6 @@ export default function DrawerAppBar(props: Props) {
         >
           {drawer}
         </Drawer>
-      </Box>
-      <Box component='main' sx={{ p: 3, backgroundColor: theme?.bgColor }}>
-        <Toolbar />
-        <Typography
-          sx={{
-            p: 3,
-            fontStyle: { color: theme?.fontColor, fontFamily: 'Montserrat' },
-          }}
-        >
-          {t('about_me_screen', { name: t('name') })}
-        </Typography>
       </Box>
     </Box>
   );

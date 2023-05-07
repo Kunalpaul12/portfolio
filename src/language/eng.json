@@ -1,8 +1,9 @@
 {
-    "name":"Kunal Pal",
+    "name":"Kunal",
     "about_me":"ABOUT ME",
     "works":"WORKS",
     "clients":"CLIENTS",
     "contact":"CONTACT",
-    "about_me_screen":"Hi , I'm {{name}} a Self taught programmer First and foremost, I love writing code. Ever since writing my first program and manipulating it to get desired output, it was almost magic being able to get the computer to do whatever I wanted just by typing in these funny little symbols ,limited only by my own imagination and ingenuity. Being an electronic and telecommunication engineer and working as a software developer provide me a greater control over hardware and software."
+    "about_me_intro":"Hi , I'm {{name}} a Self taught\n programmer",
+    "about_me_description":"First and foremost, I love writing code. Ever since writing my first program and manipulating it to get desired output, it was almost magic being able to get the computer to do whatever I wanted just by typing in these funny little symbols ,limited only by my own imagination and ingenuity. Being an electronic and telecommunication engineer and working as a software developer provide me a greater control over hardware and software."
 }

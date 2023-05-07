@@ -4,6 +4,8 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   background-color: ${(props: any) => props?.theme?.bgColor};
+  border: 2px solid ${props => props.theme.main};
+  height: 100vh;
 `;
 
 export const Button = styled.button`

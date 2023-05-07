@@ -7,6 +7,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from 'store/reducers';
 import logger from 'redux-logger';
 import './i18n';
+import { BrowserRouter } from 'react-router-dom';
 
 const store = configureStore({
   reducer: rootReducer,
@@ -18,9 +19,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
+  </BrowserRouter>,
 );
