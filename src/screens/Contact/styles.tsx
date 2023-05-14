@@ -61,7 +61,7 @@ export const MITextField = styled(TextField)`
     font-family: ${Fonts.regular};
   }
   & label.Mui-focused {
-    color: ${props => props.theme.buttonBlue};
+    color: ${props => props.theme.blue};
     font-size: 18px;
     font-family: ${Fonts.regular};
     font-weight: bold;
@@ -74,10 +74,10 @@ export const MITextField = styled(TextField)`
       border-color: ${props => props.theme.fontColor};
     }
     &:hover fieldset {
-      border-color: ${props => props.theme.buttonBlue};
+      border-color: ${props => props.theme.blue};
     }
     &.Mui-focused fieldset {
-      border-color: ${props => props.theme.buttonBlue};
+      border-color: ${props => props.theme.blue};
     }
   }
   @media (max-width: 768px) {
@@ -91,8 +91,8 @@ export const Button = styled.button`
   font-family: ${Fonts.regular};
   font-size: 18px;
   border-radius: 50px;
-  background-color: ${props => props.theme.buttonBlue};
-  border-color: ${props => props.theme.buttonBlue};
+  background-color: ${props => props.theme.blue};
+  border-color: ${props => props.theme.blue};
   color: ${props => props.theme.white};
   margin: 40px 0px 40px;
 `;

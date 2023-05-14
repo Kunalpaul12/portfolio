@@ -16,8 +16,8 @@ export const Button = styled.button`
   font-family: ${Fonts.regular};
   font-size: 18px;
   border-radius: 50px;
-  background-color: ${props => props.theme.buttonBlue};
-  border-color: ${props => props.theme.buttonBlue};
+  background-color: ${props => props.theme.blue};
+  border-color: ${props => props.theme.blue};
   color: ${props => props.theme.white};
   margin-top: 20px;
 `;

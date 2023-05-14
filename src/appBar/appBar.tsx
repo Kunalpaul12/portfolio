@@ -63,7 +63,7 @@ function useAppBarHeight(): number {
 
 export default function DrawerAppBar(props: Props) {
   const { t } = useTranslation();
-  const navItems = [t('about'), t('works'), t('clients'), t('contact')];
+  const navItems = [t('about'), t('resume'), t('clients'), t('contact')];
   const { window, theme, changeTheme } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -129,7 +129,9 @@ export default function DrawerAppBar(props: Props) {
           <ListItem key={item} disablePadding>
             <ListItemButton
               sx={{ textAlign: 'center' }}
-              onClick={() => navigate(`/${item.toLowerCase()}`)}
+              onClick={() => {
+                navigate(item === t('about') ? `/` : `/${item.toLowerCase()}`);
+              }}
             >
               <ListItemText primary={item} sx={{ color: theme?.fontColor }} />
             </ListItemButton>
@@ -182,7 +184,9 @@ export default function DrawerAppBar(props: Props) {
                   fontStyle: { fontFamily: Fonts.regular, fontWeight: 550 },
                 }}
                 onClick={() => {
-                  navigate(item === 'about' ? `/` : `/${item.toLowerCase()}`);
+                  navigate(
+                    item === t('about') ? `/` : `/${item.toLowerCase()}`,
+                  );
                 }}
               >
                 {item}
