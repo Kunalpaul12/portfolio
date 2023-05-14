@@ -4,7 +4,7 @@ import { IAppStateReducer } from 'store/reducers';
 import { ThemeProvider } from 'styled-components';
 import AppBar from 'appBar';
 import { Route, Routes } from 'react-router';
-import { About, Works, Recommendation } from 'screens';
+import { About, Works, Recommendation, Contact } from 'screens';
 
 type Props = {
   colors: any;
@@ -18,7 +18,7 @@ const App: React.FC<Props> = ({ colors }) => {
         <Route path='/' element={<About />} />
         <Route path='works' element={<Works />} />
         <Route path='clients' element={<Recommendation />} />
-        <Route path='contact' element={<Works />} />
+        <Route path='contact' element={<Contact />} />
       </Routes>
     </ThemeProvider>
   );

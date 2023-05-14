@@ -5,6 +5,8 @@ const lightColors = {
   black: '#000000',
   buttonBlue: '#007BFF',
   white: '#FFFFFF',
+  iconColor: '#000000',
+  reversFont: '#FFFFFF',
 };
 
 export default lightColors;
