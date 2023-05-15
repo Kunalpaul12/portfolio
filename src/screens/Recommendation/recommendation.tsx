@@ -12,8 +12,8 @@ import {
   DesignationContainer,
   NameText,
   RecommendationIntroText,
+  CarouselStyled,
 } from './styles';
-import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import {
   Hiren,
@@ -55,7 +55,7 @@ const Recommendation: React.FC<Props> = () => {
   return (
     <Container>
       <ContentContainer>
-        <Carousel infiniteLoop autoPlay>
+        <CarouselStyled infiniteLoop autoPlay>
           {CarouselItems(
             Sergio,
             'Go getter attitude',
@@ -91,7 +91,7 @@ const Recommendation: React.FC<Props> = () => {
             'Senior Engineering Manager @ Simpl',
             'Indrajit',
           )}
-        </Carousel>
+        </CarouselStyled>
       </ContentContainer>
     </Container>
   );

@@ -1,13 +1,27 @@
 import styled from 'styled-components';
 import { Fonts } from 'constants/Fonts';
+import Config from 'config';
+import { Carousel } from 'react-responsive-carousel';
 
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  background-color: ${(props: any) => props?.theme?.bgColor};
-  height: 100vh;
+  height: 100%;
   align-items: center;
   justify-content: center;
+  align-self: center;
+`;
+
+export const ContentContainer = styled.div`
+  display: flex;
+  align-self: center;
+  height: 100vh;
+  margin-top: 40px;
+  align-items: center;
+  @media (max-width: ${Config.recommendation_max_width}) {
+    height: 100%;
+  }
+  width: 98%;
 `;
 
 export const RecommendationIntroText = styled.p`
@@ -15,7 +29,7 @@ export const RecommendationIntroText = styled.p`
   font-weight: bold;
   font-size: 27px;
   color: ${props => props.theme.fontColor};
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.recommendation_max_width}) {
     font-size: 18px;
   }
 `;
@@ -26,28 +40,27 @@ export const RecommendationDescriptionText = styled.p`
   line-height: 1.5;
   color: ${props => props.theme.fontColor};
   text-align: start;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.recommendation_max_width}) {
     font-size: 15px;
   }
 `;
 
-export const ContentContainer = styled.div`
-  width: 80%;
-  background-color: ${(props: any) => props?.theme?.bgColor};
-`;
-
 export const ProfileImageContainer = styled.div`
-  // border: 2px solid blue;
-  @media (max-width: 768px) {
+  display: flex;
+  flex-direction: column;
+  @media (max-width: ${Config.recommendation_max_width}) {
+    width: 280px;
     height: 350px;
     align-items: center;
+    margin-top: 20px;
+    align-self: center;
   }
 `;
 
 export const ProfileImage = styled.img`
   width: 400px;
   height: 400px;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.recommendation_max_width}) {
     width: 250px;
     height: 250px;
   }
@@ -74,7 +87,7 @@ export const DesignationText = styled.text`
   font-size: 15px;
   color: ${props => props.theme.fontColor};
   line-height: 1.9;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.recommendation_max_width}) {
     font-size: 12px;
   }
 `;
@@ -83,20 +96,23 @@ export const CarousalContent = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
-  @media (max-width: 768px) {
+  justify-content: space-evenly;
+  @media (max-width: ${Config.recommendation_max_width}) {
     flex-direction: column;
     justify-content: flex-start;
   }
-  // border: 2px solid red;
 `;
 
 export const CarousalInnerContent = styled.div`
-  width: 60%;
-  margin-left: 20px;
+  display: flex;
+  flex-direction:column;
+  width 40%;
   align-self:center;
-  @media (max-width: 768px) {
+  @media (max-width:  ${Config.recommendation_max_width}) {
     width 90%;
-    // border: 2px solid green;
   }
+`;
+
+export const CarouselStyled = styled(Carousel)`
+  width: 100%;
 `;
