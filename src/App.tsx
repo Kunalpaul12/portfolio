@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { IAppStateReducer } from 'store/reducers';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import AppBar from 'appBar';
 import { Route, Routes } from 'react-router';
 import { About, Resume, Recommendation, Contact } from 'screens';
@@ -10,9 +10,16 @@ type Props = {
   colors: any;
 };
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${(props: any) => props?.theme?.bgColor};
+  }
+`;
+
 const App: React.FC<Props> = ({ colors }) => {
   return (
     <ThemeProvider theme={colors}>
+      <GlobalStyle />
       <AppBar />
       <Routes>
         <Route path='/' element={<About />} />

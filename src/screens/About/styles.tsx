@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { Fonts } from 'constants/Fonts';
+import Config from 'config';
 
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  background-color: ${(props: any) => props?.theme?.bgColor};
-  height: 100vh;
   align-items: center;
   justify-content: center;
+  height: 100%;
 `;
 
 export const Button = styled.button`
@@ -40,26 +40,28 @@ export const ContentContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  @media (max-width: 768px) {
+  align-self: center;
+  height: 100vh;
+  @media (max-width: ${Config.about_max_width}) {
     flex-direction: column;
-    background-color: ${(props: any) => props?.theme?.bgColor};
-    padding-bottom: 20px;
+    height: 100%;
+    margin-top: 20px;
   }
 `;
 
 export const IntroContainer = styled.div`
   width: 50%;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.about_max_width}) {
     width: 85%;
+    padding-bottom: 20px;
   }
 `;
 
 export const ProfileImage = styled.img`
   width: 400px;
   height: 400px;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.about_max_width}) {
     width: 250px;
     height: 250px;
-    margin-top: 400px;
   }
 `;
