@@ -10,5 +10,8 @@
     "email_id":"imkunal.paul@gmail.com",
     "location":"Mumbai",
     "message_me":"Message Me",
-    "message_me_description":"If you believe that I could be a good fit for you or yours company, I kindly request that you please reach out to me for a more in-depth discussion or to schedule an interview. I am open to providing any additional information or references you may require."
+    "message_me_description":"If you believe that I could be a good fit for you or yours company, I kindly request that you please reach out to me for a more in-depth discussion or to schedule an interview. I am open to providing any additional information or references you may require.",
+    "name_contact":"Name",
+    "email":"Email",
+    "message":"Message"
 }

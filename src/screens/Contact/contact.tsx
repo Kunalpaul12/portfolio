@@ -52,15 +52,15 @@ const Contact: React.FC<Props> = () => {
           </MessageMeContainer>
           <ContactFormContainer>
             <FormInnerContainer>
-              <MITextField variant='outlined' label='Your Name' />
+              <MITextField variant='outlined' label={t('name_contact')} />
             </FormInnerContainer>
             <FormInnerContainer>
-              <MITextField variant='outlined' label='Email' />
+              <MITextField variant='outlined' label={t('email')} />
             </FormInnerContainer>
             <FormInnerContainer>
               <MITextField
                 variant='outlined'
-                label='How Can I Help You'
+                label={t('message')}
                 inputProps={{
                   style: {
                     height: '200px',
