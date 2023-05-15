@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Fonts } from 'constants/Fonts';
 import TextField from '@mui/material/TextField';
+import Config from 'config';
 
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  background-color: ${(props: any) => props?.theme?.bgColor};
   height: 100%;
   padding: 0px 50px 0px;
 `;
@@ -34,7 +34,7 @@ export const FormContainer = styled.div`
   flex-direction: row;
   margin-top: 100px;
   justify-content: space-between;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.contact_max_width}) {
     flex-direction: column;
   }
 `;
@@ -46,10 +46,9 @@ export const FormInnerContainer = styled.div`
 export const ContactInnerContainer = styled.div`
   display: flex;
   flex-direction: row;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.contact_max_width}) {
     flex-direction: column;
   }
-  background-color: ${(props: any) => props?.theme?.bgColor};
 `;
 
 export const MITextField = styled(TextField)`
@@ -80,7 +79,7 @@ export const MITextField = styled(TextField)`
       border-color: ${props => props.theme.blue};
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.contact_max_width}) {
     width: 100%;
   }
 `;
@@ -99,7 +98,7 @@ export const Button = styled.button`
 
 export const MessageMeContainer = styled.div`
   width: 40%;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.contact_max_width}) {
     width: 95%;
   }
 `;
