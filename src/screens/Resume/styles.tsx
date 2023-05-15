@@ -3,12 +3,20 @@ import { Fonts } from 'constants/Fonts';
 
 const Padding = '0px 50px 0px';
 
+interface UnderLineContainerProps {
+  width?: string | undefined;
+}
+
+interface SkilledWidthContainer {
+  width: string;
+}
+
 export const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
   background-color: ${(props: any) => props?.theme?.bgColor};
-  height: 100vh;
+  height: 100%;
 `;
 
 export const ExperienceContainer = styled.div`
@@ -40,12 +48,14 @@ export const EducationAndExperienceContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding: ${Padding};
-  justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
-export const UnderLineContainer = styled.div`
+export const UnderLineContainer = styled.div<UnderLineContainerProps>`
   border-bottom: ${props => `2px  solid ${props.theme.blue}`};
-  width: 120px;
+  width: ${(props: any) => props.width || '120px'};
 `;
 
 export const UnderLineRoundContainer = styled.div`
@@ -71,7 +81,7 @@ export const ExperienceYearContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 40px;
 `;
 
 export const ExperienceEductionDetailsContainer = styled.div`
@@ -87,10 +97,25 @@ export const ExperiencePositionText = styled.p`
   padding-left: 10px;
 `;
 
+export const ExperienceDetailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 20px;
+  }
+`;
+
 export const EducationContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
+  align-items: flex-start;
+  padding-left: 150px;
+  @media (max-width: 768px) {
+    padding-left: 0px;
+    margin-top: 20px;
+  }
 `;
 
 export const ExperiencePositionDescriptionText = styled.p`
@@ -98,4 +123,61 @@ export const ExperiencePositionDescriptionText = styled.p`
   font-size: 15px;
   color: ${props => props.theme.fontColor};
   padding-left: 10px;
+`;
+
+export const DownloadText = styled.p`
+  font-family: ${Fonts.regular};
+  font-weight: 500;
+  font-size: 14px;
+  font-style: italic;
+  color: ${props => props.theme.fontColor};
+  padding-left: 10px;
+`;
+
+export const FrameworkText = styled.p`
+  font-family: ${Fonts.regular};
+  font-size: 10px;
+  font-style: italic;
+  color: ${props => props.theme.fontColor};
+  text-align: center;
+  padding-right: min(50px, 15px);
+  padding-left: min(50px, 15px);
+`;
+
+export const UnderLineContainerFramework = styled.div`
+  border: ${props => `2px  solid ${props.theme.blue}`};
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+`;
+
+export const FrameworkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const SkilledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px 40px;
+  padding: ${Padding};
+`;
+
+export const SkillsDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  border-bottom: ${props => `1px  solid ${props.theme.grey}`};
+  padding-bottom: 10px;
+  justify-content: space-between;
+  width: 80%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+export const SkilledWidthContainer = styled.div<SkilledWidthContainer>`
+  width: ${(props: any) => props.width};
 `;

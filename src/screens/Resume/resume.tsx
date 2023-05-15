@@ -14,30 +14,78 @@ import {
   ExperiencePositionText,
   EducationContainer,
   ExperiencePositionDescriptionText,
+  DownloadText,
+  UnderLineContainerFramework,
+  FrameworkText,
+  FrameworkContainer,
+  ExperienceDetailContainer,
+  SkilledContainer,
+  SkillsDetailsContainer,
+  SkilledWidthContainer,
 } from './styles';
 
+import DATA, { getYears } from './data';
+
 const Resume = () => {
-  const ExpEdu = (
-    year: string,
-    name: string,
-    position: string,
-    positionDes: string,
-  ) => {
+  const ExpEdu = (info: any) => {
+    const FrameWork = (data: string) => {
+      return (
+        <UnderLineContainerFramework>
+          <FrameworkText>{data}</FrameworkText>
+        </UnderLineContainerFramework>
+      );
+    };
+
+    const { date, company, designation, description, download, framework } =
+      info;
     return (
       <div>
         <ExperienceYearContainer>
           <UnderLineRoundContainer>
-            <ExperienceYearText>{year}</ExperienceYearText>
+            <ExperienceYearText>{date}</ExperienceYearText>
           </UnderLineRoundContainer>
-          <YearIndictorText>{name}</YearIndictorText>
+          <YearIndictorText>{company}</YearIndictorText>
         </ExperienceYearContainer>
         <ExperienceEductionDetailsContainer>
-          <ExperiencePositionText>{position}</ExperiencePositionText>
-          <ExperiencePositionDescriptionText>
-            {positionDes}
-          </ExperiencePositionDescriptionText>
+          <ExperiencePositionText>{designation}</ExperiencePositionText>
+          {description && (
+            <ExperiencePositionDescriptionText>
+              {description}
+            </ExperiencePositionDescriptionText>
+          )}
+          {framework && (
+            <FrameworkContainer>
+              {framework.map((e: string) => FrameWork(e))}
+            </FrameworkContainer>
+          )}
+          {download && <DownloadText>{download}</DownloadText>}
         </ExperienceEductionDetailsContainer>
       </div>
+    );
+  };
+
+  const Skills = (info: any) => {
+    const Level = (level: string) => {
+      return (
+        <UnderLineContainerFramework>
+          <FrameworkText>{level}</FrameworkText>
+        </UnderLineContainerFramework>
+      );
+    };
+
+    const { name, level, experience } = info;
+    return (
+      <SkillsDetailsContainer>
+        <SkilledWidthContainer width='150px'>
+          <ExperiencePositionText>{name}</ExperiencePositionText>
+        </SkilledWidthContainer>
+        <SkilledWidthContainer width='150px'>
+          {Level(level)}
+        </SkilledWidthContainer>
+        <SkilledWidthContainer width='150px'>
+          <YearIndictorText>{experience}</YearIndictorText>
+        </SkilledWidthContainer>
+      </SkillsDetailsContainer>
     );
   };
 
@@ -48,35 +96,37 @@ const Resume = () => {
           <ExperienceText>Resume</ExperienceText>
         </div>
         <div>
-          <ExperienceYearsText>7+ Yrs</ExperienceYearsText>
+          <ExperienceYearsText>{getYears('2016-05-01')}</ExperienceYearsText>
         </div>
       </ExperienceContainer>
       <EducationAndExperienceContainer>
-        <EducationContainer>
+        <ExperienceDetailContainer>
           <div>
             <UnderLineContainer>
               <ExperienceText>Experience</ExperienceText>
             </UnderLineContainer>
-            {ExpEdu(
-              '2022 - Present',
-              'Simpl',
-              'Staff Engineer',
-              'Duis posuere, quam non imperdiet egestas, eros enim mattis mauris in posuere lacus arcu quis felis. Etiam interdum erat non enim venenatis fermentum.',
-            )}
-            {ExpEdu(
-              '2022 - Present',
-              'Simpl',
-              'Staff Engineer',
-              'Duis posuere, quam non imperdiet egestas, eros enim mattis mauris in posuere lacus arcu quis felis. Etiam interdum erat non enim venenatis fermentum.',
-            )}
+            {DATA.experience.map(e => ExpEdu(e))}
           </div>
-        </EducationContainer>
+        </ExperienceDetailContainer>
         <div>
-          <UnderLineContainer>
-            <ExperienceText>Education</ExperienceText>
-          </UnderLineContainer>
+          <EducationContainer>
+            <UnderLineContainer>
+              <ExperienceText>Education</ExperienceText>
+            </UnderLineContainer>
+            {DATA.education.map(e => ExpEdu(e))}
+          </EducationContainer>
         </div>
       </EducationAndExperienceContainer>
+      <SkilledContainer>
+        <ExperienceDetailContainer>
+          <div>
+            <UnderLineContainer width='60px'>
+              <ExperienceText>Skills</ExperienceText>
+            </UnderLineContainer>
+            {DATA.skills.map(e => Skills(e))}
+          </div>
+        </ExperienceDetailContainer>
+      </SkilledContainer>
     </Container>
   );
 };
