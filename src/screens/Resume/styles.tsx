@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Fonts } from 'constants/Fonts';
+import Config from 'config';
 
 const Padding = '0px 50px 0px';
 
@@ -15,7 +16,6 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: ${(props: any) => props?.theme?.bgColor};
   height: 100%;
 `;
 
@@ -48,7 +48,7 @@ export const EducationAndExperienceContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding: ${Padding};
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.max_width}) {
     flex-direction: column;
   }
 `;
@@ -101,7 +101,7 @@ export const ExperienceDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.max_width}) {
     width: 100%;
     margin-top: 20px;
   }
@@ -112,7 +112,7 @@ export const EducationContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding-left: 150px;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.max_width}) {
     padding-left: 0px;
     margin-top: 20px;
   }
@@ -173,7 +173,7 @@ export const SkillsDetailsContainer = styled.div`
   padding-bottom: 10px;
   justify-content: space-between;
   width: 80%;
-  @media (max-width: 768px) {
+  @media (max-width: ${Config.max_width}) {
     width: 100%;
   }
 `;
