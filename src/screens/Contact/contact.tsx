@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -26,6 +26,30 @@ const Contact: React.FC<Props> = () => {
   const theme: any = useTheme();
   const { t } = useTranslation();
 
+  const TextField = (
+    label: string,
+    height?: string | undefined,
+    multiline?: boolean,
+  ) => {
+    return (
+      <MITextField
+        variant='outlined'
+        label={label}
+        multiline={multiline || false}
+        inputProps={{
+          style: height
+            ? {
+                color: theme.fontColor,
+                height,
+              }
+            : {
+                color: theme.fontColor,
+              },
+        }}
+      />
+    );
+  };
+
   return (
     <Container>
       <IconContainer>
@@ -52,21 +76,11 @@ const Contact: React.FC<Props> = () => {
           </MessageMeContainer>
           <ContactFormContainer>
             <FormInnerContainer>
-              <MITextField variant='outlined' label={t('name_contact')} />
+              {TextField(t('name_contact'))}
             </FormInnerContainer>
+            <FormInnerContainer>{TextField(t('email'))}</FormInnerContainer>
             <FormInnerContainer>
-              <MITextField variant='outlined' label={t('email')} />
-            </FormInnerContainer>
-            <FormInnerContainer>
-              <MITextField
-                variant='outlined'
-                label={t('message')}
-                inputProps={{
-                  style: {
-                    height: '200px',
-                  },
-                }}
-              />
+              {TextField(t('message'), '200px', true)}
             </FormInnerContainer>
             <Button>Submit</Button>
           </ContactFormContainer>
