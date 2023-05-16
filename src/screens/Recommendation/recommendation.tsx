@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { Container } from './styles';
 import {
   RecommendationDescriptionText,
@@ -15,19 +14,11 @@ import {
   CarouselStyled,
 } from './styles';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import {
-  Hiren,
-  Rohan,
-  Sergio,
-  Sharad,
-  Indrajit,
-} from '../../assets/recommendation';
+import DATA from './data';
 
 interface Props {}
 
 const Recommendation: React.FC<Props> = () => {
-  const { t } = useTranslation();
-
   const CarouselItems = (
     pic: any,
     headline: string,
@@ -56,40 +47,8 @@ const Recommendation: React.FC<Props> = () => {
     <Container>
       <ContentContainer>
         <CarouselStyled infiniteLoop autoPlay>
-          {CarouselItems(
-            Sergio,
-            'Go getter attitude',
-            t('about_me_description'),
-            'CTO @ EverUp',
-            'Sergio',
-          )}
-          {CarouselItems(
-            Hiren,
-            'He is a ROCK STAR',
-            t('about_me_description'),
-            'CEO @ Indigital Technologies',
-            'Hiren',
-          )}
-          {CarouselItems(
-            Sharad,
-            'Do more with little',
-            t('about_me_description'),
-            'Co-Founder, CEO @ Valuefy',
-            'Sharad',
-          )}
-          {CarouselItems(
-            Rohan,
-            'Sharp & Skilled decision maker',
-            t('about_me_description'),
-            'VP @ Indigital Technologies',
-            'Rohan',
-          )}
-          {CarouselItems(
-            Indrajit,
-            'Must have asset in your arsenal',
-            t('about_me_description'),
-            'Senior Engineering Manager @ Simpl',
-            'Indrajit',
+          {DATA.carouselData.map(e =>
+            CarouselItems(e.pic, e.headline, e.about_me, e.designation, e.name),
           )}
         </CarouselStyled>
       </ContentContainer>
