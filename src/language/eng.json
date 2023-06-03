@@ -1,0 +1,17 @@
+{
+    "name":"Kunal",
+    "about":"ABOUT",
+    "resume":"RESUME",
+    "clients":"CLIENTS",
+    "contact":"CONTACT",
+    "about_me_intro":"Hi , I'm {{name}} a Self taught\n programmer",
+    "about_me_description":"First and foremost, I love writing code. Ever since writing my first program and manipulating it to get desired output, it was almost magic being able to get the computer to do whatever I wanted just by typing in these funny little symbols ,limited only by my own imagination and ingenuity. Being an electronic and telecommunication engineer and working as a software developer provide me a greater control over hardware and software.",
+    "mobile_number":"+91 7498972755",
+    "email_id":"imkunal.paul@gmail.com",
+    "location":"Mumbai",
+    "message_me":"Message Me",
+    "message_me_description":"If you believe that I could be a good fit for you or yours company, I kindly request that you please reach out to me for a more in-depth discussion or to schedule an interview. I am open to providing any additional information or references you may require.",
+    "name_contact":"Name",
+    "email":"Email",
+    "message":"Message"
+}

@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { IAppStateReducer } from 'store/reducers';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import AppBar from 'appBar';
+import { Route, Routes } from 'react-router';
+import { About, Resume, Recommendation, Contact } from 'screens';
 
-function App() {
+type Props = {
+  colors: any;
+};
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${(props: any) => props?.theme?.bgColor};
+  }
+`;
+
+const App: React.FC<Props> = ({ colors }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={colors}>
+      <GlobalStyle />
+      <AppBar />
+      <Routes>
+        <Route path='/' element={<About />} />
+        <Route path='resume' element={<Resume />} />
+        <Route path='clients' element={<Recommendation />} />
+        <Route path='contact' element={<Contact />} />
+      </Routes>
+    </ThemeProvider>
   );
-}
+};
 
-export default App;
+const selector = (state: IAppStateReducer) => ({
+  colors: state?.theme?.colors,
+});
+
+const actions = {};
+
+export default compose(connect(selector, actions))(App);

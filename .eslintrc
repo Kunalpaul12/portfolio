@@ -1,0 +1,51 @@
+{
+    "root": true,
+    "extends": "airbnb",
+    "parser": "@babel/eslint-parser",
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "settings": {
+        "import/resolver": {
+          "babel-module": {
+            "alias": {
+              "config": "./src/config",
+              "components": "./src/components",
+              "hooks": "./src/hooks",
+              "screens": "./src/screens",
+              "store": "./src/store",
+              "styles": "./src/styles",
+              "utils": "./src/utils",
+              "assets": "./src/assets"
+            }
+          }
+        }
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "js": true,
+            "json": true
+        }
+    },
+    "rules": {
+      "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+      "quotes": [2, "single", { "avoidEscape": true }],
+      "consistent-return": "off",
+      "semi": ["warn", "always"],
+      "arrow-body-style": "off",
+      "jsx-quotes": ["error", "prefer-single"],
+      "import/prefer-default-export": "off",
+      "operator-linebreak": "off",
+      "arrow-parens": "off",
+      "react/require-default-props": "off",
+      "react/forbid-prop-types": 1,
+      "react/jsx-props-no-spreading": "off",
+      "react/prop-types": 1
+    }
+  }
+  
