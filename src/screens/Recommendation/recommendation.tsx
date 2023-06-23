@@ -15,10 +15,13 @@ import {
 } from './styles';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import DATA from './data';
+import { useTranslation } from 'react-i18next';
 
 interface Props {}
 
 const Recommendation: React.FC<Props> = () => {
+  const { t } = useTranslation();
+  const RecommendationData = DATA(t);
   const CarouselItems = (
     pic: any,
     headline: string,
@@ -47,7 +50,7 @@ const Recommendation: React.FC<Props> = () => {
     <Container>
       <ContentContainer>
         <CarouselStyled infiniteLoop autoPlay>
-          {DATA.carouselData.map(e =>
+          {RecommendationData.carouselData.map(e =>
             CarouselItems(e.pic, e.headline, e.about_me, e.designation, e.name),
           )}
         </CarouselStyled>
