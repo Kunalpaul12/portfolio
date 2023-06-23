@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmailIcon from '@mui/icons-material/Email';
 import { useTheme } from 'styled-components';
+import { emailRegex } from '../../utils/regex';
+import Alert from '@mui/material/Alert';
 import {
   Container,
   IconContainer,
@@ -25,14 +27,23 @@ type Props = {};
 const Contact: React.FC<Props> = () => {
   const theme: any = useTheme();
   const { t } = useTranslation();
+  const emailTextFieldRef = useRef<HTMLInputElement | null>(null);
+  const [emailError, setEmailError] = useState(false);
+  const [successAlert, setSuccessAlert] = useState(false);
+  const helperText = emailError ? t('invalid_email') : null;
 
   const TextField = (
     label: string,
     height?: string | undefined,
     multiline?: boolean,
+    ref?: any,
+    error?: boolean,
+    helperText?: string | null,
   ) => {
     return (
       <MITextField
+        error={error || false}
+        inputRef={ref}
         variant='outlined'
         label={label}
         multiline={multiline || false}
@@ -46,8 +57,33 @@ const Contact: React.FC<Props> = () => {
                 color: theme.fontColor,
               },
         }}
+        helperText={helperText || null}
       />
     );
+  };
+
+  useEffect(() => {
+    let timer: any;
+    if (successAlert) {
+      timer = setTimeout(() => {
+        setSuccessAlert(false);
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [successAlert]);
+
+  const onSubmit = () => {
+    if (
+      emailTextFieldRef?.current?.value &&
+      emailRegex.test(emailTextFieldRef?.current?.value)
+    ) {
+      setEmailError(false);
+      setSuccessAlert(true);
+    } else {
+      setEmailError(true);
+    }
   };
 
   return (
@@ -75,14 +111,26 @@ const Contact: React.FC<Props> = () => {
             </MessageMeDescription>
           </MessageMeContainer>
           <ContactFormContainer>
+            {successAlert && (
+              <Alert severity='success'>{t('success_submit')}</Alert>
+            )}
             <FormInnerContainer>
               {TextField(t('name_contact'))}
             </FormInnerContainer>
-            <FormInnerContainer>{TextField(t('email'))}</FormInnerContainer>
+            <FormInnerContainer>
+              {TextField(
+                t('email'),
+                '',
+                false,
+                emailTextFieldRef,
+                emailError,
+                helperText,
+              )}
+            </FormInnerContainer>
             <FormInnerContainer>
               {TextField(t('message'), '200px', true)}
             </FormInnerContainer>
-            <Button>Submit</Button>
+            <Button onClick={onSubmit}>Submit</Button>
           </ContactFormContainer>
         </FormContainer>
       </IconContainer>
