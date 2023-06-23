@@ -13,6 +13,8 @@
     "message_me_description":"If you believe that I could be a good fit for you or yours company, I kindly request that you please reach out to me for a more in-depth discussion or to schedule an interview. I am open to providing any additional information or references you may require.",
     "name_contact":"Name",
     "email":"Email",
+    "invalid_email":"Invalid email address. Please enter a valid email address",
+    "success_submit":"Thanks for connecting with me",
     "message":"Message",
     "resume_name":"Kunal_Pal_React_Native_Dev_7+yr_Exp",
     "resume_button_name":"Resume",
