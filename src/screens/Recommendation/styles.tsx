@@ -36,7 +36,7 @@ export const RecommendationIntroText = styled.p`
 
 export const RecommendationDescriptionText = styled.p`
   font-family: ${Fonts.regular};
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.5;
   color: ${props => props.theme.fontColor};
   text-align: start;
