@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Fonts } from 'constants/Fonts';
 import Config from 'config';
+import ArrowRightSharpIcon from '@mui/icons-material/ArrowRightSharp';
+import ArrowDropDownSharpIcon from '@mui/icons-material/ArrowDropDownSharp';
+import ArrowDropUpSharpIcon from '@mui/icons-material/ArrowDropUpSharp';
 
 const Padding = '0px 50px 0px';
 
@@ -59,8 +62,12 @@ export const UnderLineContainer = styled.div<UnderLineContainerProps>`
 `;
 
 export const UnderLineRoundContainer = styled.div`
+  display: flex;
+  width: 200px;
   border: ${props => `2px  solid ${props.theme.blue}`};
   border-radius: 20px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ExperienceYearText = styled.div`
@@ -180,4 +187,63 @@ export const SkillsDetailsContainer = styled.div`
 
 export const SkilledWidthContainer = styled.div<SkilledWidthContainer>`
   width: ${(props: any) => props.width};
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+`;
+
+export const JobRolesText = styled.p`
+  font-family: ${Fonts.regular};
+  font-size: 15px;
+  font-weight: 400;
+  color: ${props => props.theme.fontColor};
+`;
+
+export const ArrowIcon = styled(ArrowRightSharpIcon)`
+  && {
+    margin-top: 12px;
+    color: ${props => props.theme.iconColor};
+  }
+`;
+
+export const ShowMoreIcon = styled(ArrowDropDownSharpIcon)`
+  && {
+    color: ${props => props.theme.iconColor};
+  }
+`;
+
+export const ShowLessIcon = styled(ArrowDropUpSharpIcon)`
+  && {
+    color: ${props => props.theme.iconColor};
+  }
+`;
+
+export const ReadMoreUIContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+`;
+
+export const ReadMoreText = styled.h1`
+  font-family: ${Fonts.regular};
+  font-weight: 500;
+  font-size: 14px;
+  color: ${props => props.theme.blue};
+  padding-left: 10px;
+  width: 90px;
+`;
+
+export const CompanyContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 40px 0px 20px 0px;
+`;
+
+export const CompanyText = styled.div`
+  font-family: ${Fonts.regular};
+  font-size: 15px;
+  color: ${props => props.theme.grey};
+  padding-left: 10px;
 `;
